@@ -1,0 +1,8 @@
+<%= render_layout "layout" do %>
+  <div class="prose dark:prose-invert">
+    <%= render(ExampleComponent.new(title: "my title")) do %>
+      Hello, World!
+    <% end %>
+    <%= yield %>
+  </div>
+<% end %>

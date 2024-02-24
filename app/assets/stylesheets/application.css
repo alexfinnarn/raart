@@ -13,3 +13,15 @@
  *= require_tree .
  *= require_self
  */
+
+h2 {
+  font-size: 1.75rem;
+  font-weight: bold;
+  margin: 1.25rem 0;
+}
+
+p {
+  font-size: 1.125rem;
+  line-height: 1.5;
+  margin: 1rem 0;
+}

@@ -1,4 +1,4 @@
 class PageModel < Sitepress::Model
-  collection glob: "**/*.html*"
+  collection glob: "**/*.md*"
   data :title
 end

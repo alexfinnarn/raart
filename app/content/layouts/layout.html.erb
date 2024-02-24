@@ -1,0 +1,13 @@
+<%= render_layout "body" do %>
+  <div class="max-w-2xl md:mx-auto flex flex-col gap-y-10 my-10 md:gap-y-15 md:my-15 p-4">
+    <header>
+      <h1 class="text-4xl font-bold"><%= current_page.data.fetch("title") %></h1>
+      <% if subtitle = current_page.data["subtitle"] %>
+        <h2 class="text-xl opacity-50 mt-2"><%= subtitle %></h2>
+      <% end %>
+    </header>
+    <main class="">
+      <%= yield %>
+    </main>
+  </div>
+<% end %>
