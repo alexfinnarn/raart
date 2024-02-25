@@ -76,6 +76,20 @@ speaks more to me, even though the feature set is smaller and the project doesn'
 - Sitepress forked `rails-markdown`
 - Took me a little while to understand render order and file extensions. I only had `.md` which looked like source code
 
+With Sitepress, I simply set up markdown files in the posts directory and went from there. Sitepress forked the 
+`rails-markdown` to maintain it, but you can also use Slim and Haml for templating. 
+
+I did see examples where you could use erb syntax in markdown files, but it took me a while to figure out how to do 
+that. Adding erb to any `post.md` file didn't do anything. When I went to view the page in my browser, it looked 
+like it did in my IDE. 
+
+Then it dawned on me that having multiple file extensions on a file meant that it was parsed by different renderers 
+in an order. I had seen this in other languages like PHP where `template.html.twig` first uses Twig to render the 
+variables and logic and then renders the full HTML. 
+
+For Sitepress, I started with `post.html.md`, but that only got me as far as basic markdown syntax would take me. 
+For more involved logic and to use components, I switch to `post.html.markerb` in order to use erb syntax. 
+
 The [Bridgetown docs get into writing content](https://www.bridgetownrb.com/docs/structure), and it is pretty 
 similar to the structure for Sitepress. You have layouts and content, called "posts", but then there's several more 
 files for configuration and a `/plugins` directory to put more functionality into.
@@ -87,8 +101,55 @@ work" in any view layer.
 
 ### Components
 
+Bridgetown has three different component types you can use: Liquid, Ruby, and Lit (Web Components). Lit has talk of 
+hydration, which is fancier than I need, and Liquid talks of being simple. My Goldilocks choice would be the Ruby 
+components if I were to use Bridgetown.
 
+The [Ruby component docs](https://www.bridgetownrb.com/docs/components/ruby) have a lot of information on how to use 
+them and also discuss ViewComponent integration. Since Bridgetown is not built on Rails, they have some kind of shim 
+layer you can use to integrate with ViewComponent. Other topics include slotted content and view helpers. 
 
+Once again, I see a lot of caveats and "choose your own adventure" notes which makes me feel like it isn't a 
+"convention over configuration" type of project.
+
+## Layouts
+
+Bridgetown has layout support similar to how Sitepress works. You put layouts in a special `_layouts` directory and 
+usually have a bade layout your posts can inherit. Sitepress seems to recommend having a base `body` layout and then 
+`main_layout` and however many layouts you'd want to create around post types.
+
+Just like with Sitepress where you can use `current_page.data` in layouts to render something like a title, 
+Bridgetown has `resource.data` available in layout templates. It will pull from your frontmatter to get the data 
+with the key you want, e.g. `resource.data.title` will pull the title key from the frontmatter. Then, you can use a 
+`layout` key in the frontmatter to declare what layout a post uses when rendered.
+
+The only major difference I saw between Sitepress and Bridgetown's implementation of layouts is that Bridgetown has 
+the concept of a `layout.data` that can pick up frontmatter variables in layouts. You could create a view helper and 
+use erb to do that in a Sitepress layout so I'm not that impressed, but it is different. I'm not even sure why you 
+would need this feature since the variable is in the same file as the layout...but I guess you could use it in a 
+post where you want to reference layout data occasionally but not all the time. 
+ 
 ## Plugins and Extensibility
+
+One of the main advantages of using Bridgetown instead of Sitepress is the ecosystem of plugins. Since Sitepress is 
+built on top of Rails, you can argue Sitepress has more plugins available, but here I am simply judging from the 
+marketing websites and what they have to say. 
+
+https://www.bridgetownrb.com/plugins
+
+As you can see from the list of plugins, Bridgetown has a lot of capabilities and can mirror what Rails has in many 
+categories. However, Rails will likely always be bigger than Bridgetown and so you'd have to play catch up all the 
+time. 
+
+## Conclusion
+
+If I knew more about Ruby and had used Rails for a while, I'd probably be more interested in what Bridgetown has to 
+offer. Roda seems interesting and more suited to an experienced Ruby web developer who wants a leaner version of 
+Rails. The mention of all the SSG buzzwords I've seen in JS-land also tells me that the maintainers are trying to 
+keep up with all the changes SSG tools are making across all programming languages.
+
+For now, I will stick with Rails and be boring. I hope I can launch my site soon enough, and I'm sure I will revisit 
+Bridgetown again after using Rails for awhile to see how the project evolves.
+
 
 
