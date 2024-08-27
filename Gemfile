@@ -74,4 +74,4 @@ gem "sitepress-rails", "~> 4.0"
 gem "markdown-rails", "~> 2.1"
 
 # Use ViewComponent for reusable UI components. https://viewcomponent.org/guide/getting-started.html
-gem "view_component", "~> 3.13"
+gem "view_component", "~> 3.14"
